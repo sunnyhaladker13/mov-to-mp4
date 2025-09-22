@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOV to MP4 Converter - Browser Requirements</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .browser-info {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        .requirement.supported {
+            background: #d4edda;
+            color: #155724;
+        }
+        .requirement.unsupported {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .requirement .icon {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .continue-btn {
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .continue-btn:hover {
+            background: #0056b3;
+        }
+        .continue-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">MOV to MP4 Converter</h1>
+            <p class="subtitle">Browser Compatibility Check</p>
+        </header>
+
+        <div class="browser-info">
+            <h2>System Requirements</h2>
+            <p>This application requires modern browser features to work properly. Please check the compatibility below:</p>
+            
+            <div id="requirements">
+                <!-- Requirements will be populated by JavaScript -->
+            </div>
+
+            <h3>Recommended Browsers:</h3>
+            <ul>
+                <li><strong>Chrome:</strong> Version 68 or later</li>
+                <li><strong>Firefox:</strong> Version 79 or later</li>
+                <li><strong>Safari:</strong> Version 15.2 or later</li>
+                <li><strong>Edge:</strong> Version 79 or later</li>
+            </ul>
+
+            <h3>If you're seeing errors:</h3>
+            <ol>
+                <li><strong>CORS errors:</strong> Make sure you're accessing via http://localhost:8001 (not file://)</li>
+                <li><strong>SharedArrayBuffer errors:</strong> Your browser needs to support SharedArrayBuffer</li>
+                <li><strong>WebAssembly errors:</strong> Update your browser to the latest version</li>
+            </ol>
+
+            <div id="errorInfo" style="display: none;">
+                <h3>Current Error Details:</h3>
+                <pre id="errorDetails"></pre>
+            </div>
+
+            <button class="continue-btn" id="continueBtn" onclick="window.location.href='index.html'">
+                Continue to Converter
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function checkBrowserCompatibility() {
+            const requirements = [
+                {
+                    name: 'WebAssembly',
+                    check: () => typeof WebAssembly !== 'undefined',
+                    required: true
+                },
+                {
+                    name: 'SharedArrayBuffer',
+                    check: () => typeof SharedArrayBuffer !== 'undefined',
+                    required: true
+                },
+                {
+                    name: 'Web Workers',
+                    check: () => typeof Worker !== 'undefined',
+                    required: true
+                },
+                {
+                    name: 'File API',
+                    check: () => typeof File !== 'undefined' && typeof FileReader !== 'undefined',
+                    required: true
+                },
+                {
+                    name: 'URL.createObjectURL',
+                    check: () => typeof URL !== 'undefined' && typeof URL.createObjectURL === 'function',
+                    required: true
+                }
+            ];
+
+            const requirementsDiv = document.getElementById('requirements');
+            let allSupported = true;
+
+            requirements.forEach(req => {
+                const supported = req.check();
+                if (req.required && !supported) {
+                    allSupported = false;
+                }
+
+                const div = document.createElement('div');
+                div.className = `requirement ${supported ? 'supported' : 'unsupported'}`;
+                div.innerHTML = `
+                    <span class="icon">${supported ? '✓' : '✗'}</span>
+                    <span>${req.name}: ${supported ? 'Supported' : 'Not Supported'}</span>
+                `;
+                requirementsDiv.appendChild(div);
+            });
+
+            // Browser detection
+            const ua = navigator.userAgent;
+            const browserInfo = document.createElement('div');
+            browserInfo.innerHTML = `<p><strong>Your browser:</strong> ${ua}</p>`;
+            requirementsDiv.appendChild(browserInfo);
+
+            const continueBtn = document.getElementById('continueBtn');
+            if (!allSupported) {
+                continueBtn.disabled = true;
+                continueBtn.textContent = 'Browser Not Compatible';
+            }
+
+            // Check for specific error from URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error) {
+                const errorInfo = document.getElementById('errorInfo');
+                const errorDetails = document.getElementById('errorDetails');
+                errorInfo.style.display = 'block';
+                errorDetails.textContent = decodeURIComponent(error);
+            }
+
+            return allSupported;
+        }
+
+        // Run compatibility check
+        document.addEventListener('DOMContentLoaded', checkBrowserCompatibility);
+    </script>
+</body>
+</html>

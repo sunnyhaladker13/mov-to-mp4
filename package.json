@@ -1,0 +1,17 @@
+{
+  "name": "mov-to-mp4-converter",
+  "version": "1.0.0",
+  "description": "A client-side MOV to MP4 converter using FFmpeg.wasm",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server . --port 8080 --cors --header 'Cross-Origin-Embedder-Policy: require-corp' --header 'Cross-Origin-Opener-Policy: same-origin' --open",
+    "serve": "./start-server.sh",
+    "dev": "npm start"
+  },
+  "keywords": ["video", "conversion", "ffmpeg", "mov", "mp4", "local", "client-side"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOV to MP4 Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">MOV to MP4 Converter</h1>
+            <p class="subtitle">Convert your MOV files to MP4 format directly in your browser</p>
+        </header>
+
+        <main class="converter">
+            <!-- Step 1: File Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <p class="upload-text">Drop your MOV file here</p>
+                        <p class="upload-subtext">or</p>
+                        <button class="upload-button" id="uploadButton">Choose File</button>
+                        <input type="file" id="fileInput" accept=".mov" hidden>
+                    </div>
+                </div>
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-details">
+                        <span class="file-name" id="fileName"></span>
+                        <span class="file-size" id="fileSize"></span>
+                    </div>
+                    <button class="remove-file" id="removeFile">✕</button>
+                </div>
+            </section>
+
+            <!-- Step 2: Conversion Section -->
+            <section class="conversion-section" id="conversionSection">
+                <button class="convert-button" id="convertButton" disabled>
+                    Convert to MP4
+                </button>
+                <div class="conversion-status" id="conversionStatus" style="display: none;">
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
+                    <p class="status-message" id="statusMessage">Initializing conversion...</p>
+                </div>
+            </section>
+
+            <!-- Step 3: Download Section -->
+            <section class="download-section" id="downloadSection" style="display: none;">
+                <div class="download-content">
+                    <div class="success-icon">✓</div>
+                    <p class="success-message">Conversion completed successfully!</p>
+                    <button class="download-button" id="downloadButton">
+                        Download MP4
+                    </button>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section class="error-section" id="errorSection" style="display: none;">
+                <div class="error-content">
+                    <div class="error-icon">⚠</div>
+                    <p class="error-message" id="errorMessage"></p>
+                    <button class="retry-button" id="retryButton">Try Again</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">Client-side conversion • No files uploaded to servers</p>
+        </footer>
+    </div>
+
+    <!-- Configure FFmpeg.wasm before loading -->
+    <script>
+        // Set global configuration for FFmpeg.wasm
+        window.__ffmpeg_base_url__ = '/ffmpeg/';
+    </script>
+    <!-- Use local FFmpeg.wasm files to avoid all CORS issues -->
+    <script src="./ffmpeg/ffmpeg.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

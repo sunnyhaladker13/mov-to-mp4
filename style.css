@@ -1,0 +1,376 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #fafafa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container and Layout */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* Main Converter */
+.converter {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Upload Section */
+.upload-section {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.upload-area {
+    padding: 3rem 2rem;
+    border: 2px dashed #d0d0d0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: #fff;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+    border-color: #0066cc;
+    background: #f8fbff;
+}
+
+.upload-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    opacity: 0.6;
+}
+
+.upload-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.upload-subtext {
+    font-size: 0.875rem;
+    color: #666;
+    margin: -0.5rem 0;
+}
+
+.upload-button {
+    background: #0066cc;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.upload-button:hover {
+    background: #0052a3;
+}
+
+/* File Info */
+.file-info {
+    background: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.file-name {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.file-size {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.remove-file {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+}
+
+.remove-file:hover {
+    color: #e74c3c;
+}
+
+/* Conversion Section */
+.conversion-section {
+    text-align: center;
+}
+
+.convert-button {
+    background: #0066cc;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 200px;
+}
+
+.convert-button:hover:not(:disabled) {
+    background: #0052a3;
+}
+
+.convert-button:disabled {
+    background: #d0d0d0;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.conversion-status {
+    margin-top: 2rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #0066cc;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-weight: 500;
+    color: #1a1a1a;
+    min-width: 3rem;
+    text-align: right;
+}
+
+.status-message {
+    color: #666;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Download Section */
+.download-section {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.download-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.success-icon {
+    font-size: 2.5rem;
+    color: #28a745;
+}
+
+.success-message {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.download-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-width: 200px;
+}
+
+.download-button:hover {
+    background: #218838;
+}
+
+/* Error Section */
+.error-section {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.error-icon {
+    font-size: 2.5rem;
+    color: #e74c3c;
+}
+
+.error-message {
+    font-size: 1rem;
+    color: #e74c3c;
+    margin: 0;
+}
+
+.retry-button {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+    background: #5a6268;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .title {
+        font-size: 1.75rem;
+    }
+    
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+    
+    .progress-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .progress-text {
+        text-align: center;
+    }
+}
+
+/* Animation for smooth transitions */
+.conversion-section,
+.download-section,
+.error-section {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
